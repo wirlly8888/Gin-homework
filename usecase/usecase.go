@@ -28,16 +28,6 @@ type UseCase interface {
 	DeleteTask(taskID int) error
 }
 
-// type UseCaseImpl struct {
-// 	Db *[]entity.Task
-// }
-
-// func NewUseCase(Db *[]entity.Task) UseCase {
-// 	return UseCaseImpl{
-// 		Db: Db,
-// 	}
-// }
-
 type UseCaseImpl struct {
 	tasks repo.Tasks
 }
@@ -76,11 +66,6 @@ func (t UseCaseImpl) CreateTask(task entity.Task) (int, error) {
 	}
 
 	return t.tasks.Create(task)
-
-	// task.ID = len(*t.Db) + 1
-	// *t.Db = append(*t.Db, task)
-
-	// return task.ID, nil
 }
 
 func (t UseCaseImpl) UpdateTask(updatedTask entity.Task) error {
@@ -96,15 +81,6 @@ func (t UseCaseImpl) UpdateTask(updatedTask entity.Task) error {
 		return err
 	}
 	return nil
-
-	// for i, task := range *t.Db {
-	// 	if task.ID == updatedTask.ID {
-	// 		(*t.Db)[i] = updatedTask
-	// 		return nil
-	// 	}
-	// }
-
-	// return ErrIdNotFound
 }
 
 func (t UseCaseImpl) DeleteTask(taskID int) error {
@@ -120,13 +96,4 @@ func (t UseCaseImpl) DeleteTask(taskID int) error {
 		return err
 	}
 	return nil
-
-	// for i, task := range *t.Db {
-	// 	if task.ID == taskID {
-	// 		*t.Db = append((*t.Db)[:i], (*t.Db)[i+1:]...)
-	// 		return nil
-	// 	}
-	// }
-
-	// return ErrIdNotFound
 }

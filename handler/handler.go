@@ -42,7 +42,6 @@ func SetupRoute(r *gin.Engine, Db database.TempDataBase) *gin.Engine {
 
 func newHandler(Db database.TempDataBase) ServerHandler {
 	return HandlerImpl{
-		// Usecase: usecase.NewUseCase(Db),
 		Usecase: usecase.NewUseCase(Db),
 	}
 }
