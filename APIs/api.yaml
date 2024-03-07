@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: Tasks API
+  description: APIs for managing tasks
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /tasks:
+    get:
+      summary: List tasks
+      responses:
+        '200':
+          description: A list of tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "test"
+                        status:
+                          type: integer
+                          enum:
+                            - 0
+                            - 1
+                          example: 0
+    post:
+      summary: Create a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "test"
+                status:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  example: 0
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task id:
+                    type: integer
+                    example: 1
+
+  /tasks/{id}:
+    put:
+      summary: Update a task
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "test"
+                status:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  example: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated task ID:
+                    type: integer
+                    example: 1
+
+    delete:
+      summary: Delete a task
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
